@@ -3206,7 +3206,7 @@
                     <div class="content">
                         <ul style="display: none;" class="js_more_list brand_list">
                             {% for area in choice_areas %}
-                            <li><a name="湖里" zz="guishudi">1{{ area }}</a></li>
+                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
                             {% endfor %}
                             <li><a name="思明" zz="guishudi">思明</a></li>
                             <li><a name="集美" zz="guishudi">集美</a></li>
@@ -3217,7 +3217,9 @@
                         </ul>
                         <ul class="ls_collapse" style="display: block;">
                             <li><a class="on" name="0" zz="guishudi">不限</a></li>
-                            <li><a name="湖里" zz="guishudi">湖里</a></li>
+                           {% for area in choice_areas %}
+                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
+                            {% endfor %}
                             <li><a name="思明" zz="guishudi">思明</a></li>
                             <li><a name="集美" zz="guishudi">集美</a></li>
                             <li><a name="杏林" zz="guishudi">杏林</a></li>

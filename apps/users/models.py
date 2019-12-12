@@ -21,7 +21,7 @@ class UserProfile(AbstractUser):
 
 class CarBrand(models.Model):
     name = models.CharField(max_length=15, verbose_name='名字')
-    first_letter = models.CharField(null=True, blank=True, max_length=5,verbose_name='首字符')
+    first_letter = models.CharField(null=True, blank=True, max_length=5, verbose_name='首字符')
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
@@ -31,8 +31,11 @@ class CarBrand(models.Model):
     def __str__(self):
         return self.name
 
+
 class CarPriceInfo(models.Model):
-    price=models.CharField(max_length=15,verbose_name='价格范围')
+    price = models.CharField(max_length=15, verbose_name='价格范围')
+    price_from = models.SmallIntegerField(null=True, blank=True, verbose_name='从')
+    price_to = models.SmallIntegerField(null=True, blank=True, verbose_name='到')
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
@@ -41,6 +44,22 @@ class CarPriceInfo(models.Model):
 
     def __str__(self):
         return self.price
+
+
+class CarAgeInfo(models.Model):
+    age = models.CharField(max_length=15, verbose_name='车龄范围')
+    age_from = models.SmallIntegerField(null=True, blank=True, verbose_name='从')
+    age_to = models.SmallIntegerField(null=True, blank=True, verbose_name='到')
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
+
+    class Meta:
+        verbose_name = '车年龄范围'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.price
+
+
 class CarInfo(models.Model):
     CHOICE_AREA = {
         (0, '思明区'),
@@ -138,5 +157,5 @@ class Banner(models.Model):
         verbose_name = '首页轮播'
         verbose_name_plural = verbose_name
 
-    # def __str__(self):
-    #     return self.image
+        # def __str__(self):
+        #     return self.image

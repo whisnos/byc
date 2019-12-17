@@ -8,9 +8,17 @@ from users.models import CarBrand, CarPriceInfo, CarInfo
 def index(request):
     chao_di=CarInfo.objects.filter(car_type=4).order_by('add_time')[:6]
     re_men=CarInfo.objects.filter(car_type=3).order_by('add_time')[:6]
+    jing_ji=CarInfo.objects.filter(car_type=2).order_by('add_time')[:6]
+    super_suv=CarInfo.objects.filter(car_type=1).order_by('add_time')[:6]
+    mian_bao=CarInfo.objects.filter(car_type=0).order_by('add_time')[:6]
     return render(request, 'index.html',{
         "chao_di":chao_di,
-        "re_men":re_men
+        "re_men":re_men,
+        "jing_ji":jing_ji,
+        "super_suv":super_suv,
+        "mian_bao":mian_bao
+
+
     })
 
 

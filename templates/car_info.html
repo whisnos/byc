@@ -1,0 +1,56 @@
+    <div class="mb15 clearfix">
+                    <div class="car_filter_list car_list_pic">
+                        <ul class="chanpin clearfix">
+                            {% for car in all_cars %}
+                            <li>
+                                <div class="car_list_box clearfix">
+                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/146.html"
+                                       target="_blank" title="{{ car.title }}">
+                                        <div class="pic" data-original=""
+                                             style="background: url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center;background-size:cover;">
+                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
+                                            </i>
+
+                                        </div>
+                                    </a>
+                                    <div class="info">
+                                        <h4>
+                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/146.html"
+                                               target="_blank" title="{{ car.title }}">{{ car.title }}</a>
+                                        </h4>
+                                        <p class="p1">
+                                            <strong>{{ car.up_time }}</strong>
+                                            上牌
+                                            <b>
+                                                |
+                                            </b>
+                                            <strong>{{ car.car_km }}</strong>
+                                            万公里
+                                            <b>
+                                                |
+                                            </b>经典SUV<b>
+                                            |
+                                        </b>{{ car.area }}
+                                        </p>
+                                        <p>{{ car.title }}</p>
+                                        <p class="p2">
+                                            <span class="time">2015-09-15</span>
+                                            更新
+                                            <span class="tag">
+                    车况已检测
+                </span>
+                                            <a href="http://www.bangyiche.com/cpx.php?/146.html" class="view">
+                                                查看检测报告
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <p class="price">
+                                        <strong>{{ car.car_price }}</strong>
+                                        万
+                                    </p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>

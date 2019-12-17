@@ -60,7 +60,7 @@ $(".queding").click(function(){
 	var zh = $(this).parents(".custom").find(".xde").val();
 	zh += '-' + $(this).parents('.custom').find(".dde").val();
 	arr[lx] = zh;
-	$.post("../cpcl.php",
+	$.post("../cpcl1.php",
 	{arr:arr},
 	function(data){
 		$(".chanpin").html(data);
@@ -104,7 +104,7 @@ $(".queding").click(function(){
     if($('#sxf').attr('name')==1){$('#sxf').attr('name','');}else if($('#sxf').attr('name')==0){$('#sxf').attr('name','1');$('#sxf').removeClass('on');}
     // alert(lx);
     arr[lx] = zh;
-    $.post("../cpcl.php",
+    $.get("../test/",
     {arr:arr},
     function(data){
         $(".chanpin").html(data);
@@ -174,7 +174,7 @@ $(".filter_list .content ul li a,.pop_layer ul li a,#page a,.fenq,.sub_title .le
 	if($('#sxf').attr('name')==1){$('#sxf').attr('name','');}else if($('#sxf').attr('name')==0){$('#sxf').attr('name','1');$('#sxf').removeClass('on');}
 	// alert(lx);
 	arr[lx] = zh;
-	$.post("../cpcl.php",
+	$.get("../test/",
 	{arr:arr},
 	function(data){
 		$(".chanpin").html(data);

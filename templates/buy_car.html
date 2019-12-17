@@ -62,7 +62,7 @@
                         </div>
                         <ul style="display: none;" class="js_more_list js_more_listsxmz brand_list">
                             {% for brand in all_brands %}
-                            <li szm="{{ brand.first_letter }}"><a name="{{ brand.name }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
+                            <li szm="{{ brand.first_letter }}"><a href="{% url 'buy_car' %}" name="{{ brand.id }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
                             {% endfor %}
 {#                            <li szm="F"><a name="丰田" class="pinpai" zz="pp" lid="1524">丰田</a></li>#}
 {#                            <li szm="B"><a name="本田" class="pinpai" zz="pp" lid="1507">本田</a></li>#}
@@ -288,7 +288,7 @@
                         <ul class="ls_collapse" style="display: block;">
                             <li><a class="on buxian" name="0" zz="pp">不限</a></li>
                             {% for brand in all_brands %}
-                            <li><a name="{{ brand.name }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
+                            <li><a name="{{ brand.id }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
                             {% endfor %}
 {#                            <li><a name="丰田" class="pinpai" zz="pp" lid="1524">丰田</a></li>#}
 {#                            <li><a name="本田" class="pinpai" zz="pp" lid="1507">本田</a></li>#}
@@ -3182,18 +3182,18 @@
                             <li><a zz="zz" name="1-3">1-3年</a></li>
                             <li><a zz="zz" name="3-5">3-5年</a></li>
                             <li><a zz="zz" name="5-99999">5年以上</a></li>
-                            <li class="zh">
-                                <div class="custom">
-                                    <p class="p1">
-                                        <span style="color:#777;">自定义车龄</span>
-                                        <input class="i1 xde">-<input class="dde i1">
-                                    </p>
-                                    <p class="sure">
-                                        <button class="queding">确定</button>
-                                    </p>
-                                    <p></p>
-                                </div>
-                            </li>
+{#                            <li class="zh">#}
+{#                                <div class="custom">#}
+{#                                    <p class="p1">#}
+{#                                        <span style="color:#777;">自定义车龄</span>#}
+{#                                        <input class="i1 xde">-<input class="dde i1">#}
+{#                                    </p>#}
+{#                                    <p class="sure">#}
+{#                                        <button class="queding">确定</button>#}
+{#                                    </p>#}
+{#                                    <p></p>#}
+{#                                </div>#}
+{#                            </li>#}
                         </ul>
                     </div>
                 </div>
@@ -3208,24 +3208,24 @@
                             {% for area in choice_areas %}
                             <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
                             {% endfor %}
-                            <li><a name="思明" zz="guishudi">思明</a></li>
-                            <li><a name="集美" zz="guishudi">集美</a></li>
-                            <li><a name="杏林" zz="guishudi">杏林</a></li>
-                            <li><a name="海沧" zz="guishudi">海沧</a></li>
-                            <li><a name="翔安" zz="guishudi">翔安</a></li>
-                            <li><a name="同安" zz="guishudi">同安</a></li>
+{#                            <li><a name="思明" zz="guishudi">思明</a></li>#}
+{#                            <li><a name="集美" zz="guishudi">集美</a></li>#}
+{#                            <li><a name="杏林" zz="guishudi">杏林</a></li>#}
+{#                            <li><a name="海沧" zz="guishudi">海沧</a></li>#}
+{#                            <li><a name="翔安" zz="guishudi">翔安</a></li>#}
+{#                            <li><a name="同安" zz="guishudi">同安</a></li>#}
                         </ul>
                         <ul class="ls_collapse" style="display: block;">
                             <li><a class="on" name="0" zz="guishudi">不限</a></li>
                            {% for area in choice_areas %}
                             <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
                             {% endfor %}
-                            <li><a name="思明" zz="guishudi">思明</a></li>
-                            <li><a name="集美" zz="guishudi">集美</a></li>
-                            <li><a name="杏林" zz="guishudi">杏林</a></li>
-                            <li><a name="海沧" zz="guishudi">海沧</a></li>
-                            <li><a name="翔安" zz="guishudi">翔安</a></li>
-                            <li><a name="同安" zz="guishudi">同安</a></li>
+{#                            <li><a name="思明" zz="guishudi">思明</a></li>#}
+{#                            <li><a name="集美" zz="guishudi">集美</a></li>#}
+{#                            <li><a name="杏林" zz="guishudi">杏林</a></li>#}
+{#                            <li><a name="海沧" zz="guishudi">海沧</a></li>#}
+{#                            <li><a name="翔安" zz="guishudi">翔安</a></li>#}
+{#                            <li><a name="同安" zz="guishudi">同安</a></li>#}
                         </ul>
                         <span id="js_more" zt="0" class="btn btn-more js_m">
                             <a id="areaLinkMore" style="display:block;right: -2px;width: 44px;top: 0;border-radius: 0;"
@@ -3284,42 +3284,44 @@
                 <div style="width: 960px; height: 40px; display: none;">
                 </div>
                 <!-- 列表模式-->
-                <div class="mb15 clearfix">
+{#                {% include 'car_info.html' %}#}
+                    <div class="mb15 clearfix">
                     <div class="car_filter_list car_list_pic">
                         <ul class="chanpin clearfix">
+                            {% for car in all_cars %}
                             <li>
                                 <div class="car_list_box clearfix">
                                     <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/146.html"
-                                       target="_blank" title="2013款 别克 昂科拉 1.4T 高配版 个人车源 车主送沙发垫一套">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150915/20150915192521_73052.jpg) no-repeat center center;background-size:cover;">
+                                       target="_blank" title="{{ car.title }}">
+                                        <div class="pic" data-original=""
+                                             style="background: url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center;background-size:cover;">
                                             <i class="i-bao-b" title="该车重要部件免费保修半年">
                                             </i>
+
                                         </div>
                                     </a>
                                     <div class="info">
                                         <h4>
                                             <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/146.html"
-                                               target="_blank" title="2013款 别克 昂科拉 1.4T 高配版 个人车源 车主送沙发垫一套">2013款 别克 昂科拉
-                                                1.4T 高配版 个人车源 车主送沙发垫一套</a>
+                                               target="_blank" title="{{ car.title }}">{{ car.title }}</a>
                                         </h4>
                                         <p class="p1">
-                                            <strong>2013-04-01</strong>
+                                            <strong>{{ car.up_time }}</strong>
                                             上牌
                                             <b>
                                                 |
                                             </b>
-                                            <strong>5</strong>
+                                            <strong>{{ car.car_km }}</strong>
                                             万公里
                                             <b>
                                                 |
                                             </b>经典SUV<b>
                                             |
-                                        </b>湖里
+                                        </b>{{ car.area }}
                                         </p>
-                                        <p>2013款 别克 昂科拉 1.4T 高配版 个人车源 车主送沙发垫一套</p>
+                                        <p>{{ car.title }}</p>
                                         <p class="p2">
-                                            <span class="time">2015-09-15</span>
+                                            <span class="time">{{ car.add_time }}</span>
                                             更新
                                             <span class="tag">
                     车况已检测
@@ -3330,445 +3332,16 @@
                                         </p>
                                     </div>
                                     <p class="price">
-                                        <strong>15.88</strong>
+                                        <strong>{{ car.car_price }}</strong>
                                         万
                                     </p>
                                 </div>
                             </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/144.html"
-                                       target="_blank" title="2013年吉利全球鹰 1.3 手动 特惠版 只有2W里程 【一手私家好车，要的赶紧！】">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150912/20150912180905_66593.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/144.html"
-                                               target="_blank" title="2013年吉利全球鹰 1.3 手动 特惠版 只有2W里程 【一手私家好车，要的赶紧！】">2013年吉利全球鹰
-                                                1.3 手动 特惠版 只有2W里程 【一手私家好车，要的赶紧！】</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2013-10-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>2.3</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>超值低价<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>
-                                            13年之光加长版，1.3大排量的发动机、超好的底盘大梁车身、座椅皮套、车子保养超级好、有心动的小伙伴赶快联系我。&amp;10;保险到2016年3月</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-12</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/144.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>3.98</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/145.html"
-                                       target="_blank" title="比亚迪F6 2013款 车况极好 2.0排量 带天窗 高配版 双险到17年4月 ">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150915/20150915180151_57243.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/145.html"
-                                               target="_blank" title="比亚迪F6 2013款 车况极好 2.0排量 带天窗 高配版 双险到17年4月 ">比亚迪F6
-                                                2013款 车况极好 2.0排量 带天窗 高配版 双险到17年4月 </a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2013-04-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>9.5</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>超值低价<b>
-                                            |
-                                        </b>湖里
-                                        </p>
-                                        <p>比亚迪F6 2013款 车况极好 2.0排量 带天窗 高配版 双险到17年4月 </p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-15</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/145.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>4.28</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/147.html"
-                                       target="_blank" title="2012款 日产天籁  2.0 CVT XL 加长智享版 双险到16年9月 极品车况 保养非常好">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150915/20150915204547_77303.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/147.html"
-                                               target="_blank" title="2012款 日产天籁  2.0 CVT XL 加长智享版 双险到16年9月 极品车况 保养非常好">2012款
-                                                日产天籁 2.0 CVT XL 加长智享版 双险到16年9月 极品车况 保养非常好</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2012-09-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>5.8</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>经济实用<b>
-                                            |
-                                        </b>湖里
-                                        </p>
-                                        <p>2012款 日产天籁 2.0 CVT XL 加长智享版 双险到16年9月 极品车况 保养非常好 车主非常会保养的 非常的新 简直跟准新车一样新</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-15</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/147.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>13.08</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/138.html"
-                                       target="_blank" title="五菱之光 带中央空调 厦门车源 面包车">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150905/20150905111817_69674.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/138.html"
-                                               target="_blank" title="五菱之光 带中央空调 厦门车源 面包车">五菱之光 带中央空调 厦门车源 面包车</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2014-02-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>2.8</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>面包车酷<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>车况好 带中央空调</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-05</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/138.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>3.68</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/139.html"
-                                       target="_blank" title="东风风行 菱智1.6L 带导航 厦门面包车">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150905/20150905144528_79332.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/139.html"
-                                               target="_blank" title="东风风行 菱智1.6L 带导航 厦门面包车">东风风行 菱智1.6L 带导航 厦门面包车</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2013-04-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>5</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>面包车酷<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>东风风行 1.6L 带导航</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-05</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/139.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>4.78</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/140.html"
-                                       target="_blank" title="五菱之光 加长型1.2L 带电动窗 厦门面包车">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150905/20150905151938_45991.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/140.html"
-                                               target="_blank" title="五菱之光 加长型1.2L 带电动窗 厦门面包车">五菱之光 加长型1.2L 带电动窗
-                                                厦门面包车</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2013-06-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>5</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>面包车酷<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>五菱之光 加长型1.2L 带电动窗 厦门面包车</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-05</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/140.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>3.68</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/142.html"
-                                       target="_blank" title="【精品吉利帝豪】EC7 1.8  三厢 2011年上牌 厦门个人车源 性价比超高">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150912/20150912145921_47052.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/142.html"
-                                               target="_blank" title="【精品吉利帝豪】EC7 1.8  三厢 2011年上牌 厦门个人车源 性价比超高">【精品吉利帝豪】EC7
-                                                1.8 三厢 2011年上牌 厦门个人车源 性价比超高</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2011-01-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>6</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>热门练手<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>【精品吉利帝豪】EC7 1.8 2011年上牌 厦门个人车源 性价比超高</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-12</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/142.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>4.98</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/143.html"
-                                       target="_blank" title="2013款现代伊兰特 1.6 自动舒适型 家用大三厢">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150912/20150912173349_71206.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/143.html"
-                                               target="_blank" title="2013款现代伊兰特 1.6 自动舒适型 家用大三厢">2013款现代伊兰特 1.6 自动舒适型
-                                                家用大三厢</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2013-01-01</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>2</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>经济实用<b>
-                                            |
-                                        </b>集美
-                                        </p>
-                                        <p>2013年9月现代伊兰特自动1.6，四门电动窗，铝合金轮毂，真皮座椅，保险刚买到2016年9月，年检到2017年9月，厦门一手车，车况很好</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-12</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/143.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>8.88</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="car_list_box clearfix">
-                                    <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/149.html"
-                                       target="_blank" title="2012款 雪铁龙C2 1.4L 舒适版 车况保养非常的好 就一点小刮擦 个人车源">
-                                        <div class="pic"
-                                             style="background: url(/FYUP/image/image/20150916/20150916195349_62871.jpg) no-repeat center center;background-size:cover;">
-                                            <i class="i-bao-b" title="该车重要部件免费保修半年">
-                                            </i>
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <h4>
-                                            <a data-flag="true" href="http://www.bangyiche.com/cpx.php?/149.html"
-                                               target="_blank" title="2012款 雪铁龙C2 1.4L 舒适版 车况保养非常的好 就一点小刮擦 个人车源">2012款
-                                                雪铁龙C2 1.4L 舒适版 车况保养非常的好 就一点小刮擦 个人车源</a>
-                                        </h4>
-                                        <p class="p1">
-                                            <strong>2012-01-04</strong>
-                                            上牌
-                                            <b>
-                                                |
-                                            </b>
-                                            <strong>6.8</strong>
-                                            万公里
-                                            <b>
-                                                |
-                                            </b>热门练手<b>
-                                            |
-                                        </b>湖里
-                                        </p>
-                                        <p>厦门本地私家精品一手 手动档 12年上牌 保养超级一流 居家代步好工具 价格可谈</p>
-                                        <p class="p2">
-                                            <span class="time">2015-09-16</span>
-                                            更新
-                                            <span class="tag">
-                    车况已检测
-                </span>
-                                            <a href="http://www.bangyiche.com/cpx.php?/149.html" class="view">
-                                                查看检测报告
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <p class="price">
-                                        <strong>3.98</strong>
-                                        万
-                                    </p>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
+
                 <div class="pages" id="page"><span zz="fy">首页</span><span zz="fy">上一页</span><span class="cur" zz="fy"
                                                                                                   name="1">1</span><a
                         zz="fy" name="2">2</a><a name="2" zz="fy">下一页</a><a name="2" zz="fy">尾页</a></div>
@@ -3889,29 +3462,29 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
-
-        $(".pinpai").click(function () {
-            var id = $(this).attr("lid");
-            $.post('cl.php', {
-                id: id,
-                dd: 'pinpai'
-            }, function (data) {
-                $(".chexirongqi").html(data);
-                $(".chexirongqi2").html('<li><a class="on" name="0" zz="chexi" >不限</a></li>' + data);
-            })
-        })
-
-
-        $(".buxian").click(function () {
-            $.post('cl.php', {
-                dd: 'buxian'
-            }, function (data) {
-                $(".chexirongqi").html(data);
-                $(".chexirongqi2").html('<li><a class="on" name="0" zz="chexi" >不限</a></li>' + data);
-            })
-        })
-
-    </script>
+{#    <script type="text/javascript">#}
+{##}
+{##}
+{#        $(".pinpai").click(function () {#}
+{#            var id = $(this).attr("lid");#}
+{#            $.post('cl.php', {#}
+{#                id: id,#}
+{#                dd: 'pinpai'#}
+{#            }, function (data) {#}
+{#                $(".chexirongqi").html(data);#}
+{#                $(".chexirongqi2").html('<li><a class="on" name="0" zz="chexi" >不限</a></li>' + data);#}
+{#            })#}
+{#        })#}
+{##}
+{##}
+{#        $(".buxian").click(function () {#}
+{#            $.post('cl.php', {#}
+{#                dd: 'buxian'#}
+{#            }, function (data) {#}
+{#                $(".chexirongqi").html(data);#}
+{#                $(".chexirongqi2").html('<li><a class="on" name="0" zz="chexi" >不限</a></li>' + data);#}
+{#            })#}
+{#        })#}
+{##}
+{#    </script>#}
 {% endblock %}

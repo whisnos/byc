@@ -62,7 +62,7 @@
                         </div>
                         <ul style="display: none;" class="js_more_list js_more_listsxmz brand_list">
                             {% for brand in all_brands %}
-                            <li szm="{{ brand.first_letter }}"><a href="{% url 'buy_car' %}" name="{{ brand.id }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
+                            <li szm="{{ brand.first_letter }}"><a name="{{ brand.id }}" class="pinpai" zz="pp" lid="{{ brand.id }}">{{ brand.name }}</a></li>
                             {% endfor %}
 {#                            <li szm="F"><a name="丰田" class="pinpai" zz="pp" lid="1524">丰田</a></li>#}
 {#                            <li szm="B"><a name="本田" class="pinpai" zz="pp" lid="1507">本田</a></li>#}
@@ -3144,28 +3144,29 @@
                     </h4>
                     <div style="z-index: 5;" class="content">
                         <ul class="sx">
-                            <li><a zz="yls" name="0" class="on">不限</a></li>
-                            {% for price in all_car_prices %}
-                            <li><a zz="yls" name="{{ price.price }}">{{ price.price }}</a></li>
-                            {% endfor %}
-{#                            <li><a zz="yls" name="3-5">3-5万</a></li>#}
-{#                            <li><a zz="yls" name="5-10">5-10万</a></li>#}
-{#                            <li><a zz="yls" name="10-20">10-20万</a></li>#}
-{#                            <li><a zz="yls" name="20-30">20-30万</a></li>#}
-{#                            <li><a zz="yls" name="30-40">30-40万</a></li>#}
-{#                            <li><a zz="yls" name="40-999999999">40万以上</a></li>#}
-                            <li>
-                                <div class="custom">
-                                    <p class="p1">
-                                        <span style="color:#777;">自定义价格</span>
-                                        <input class="i1 xde">-<input class="dde i1">
-                                    </p>
-                                    <p class="sure">
-                                        <button class="queding">确定</button>
-                                    </p>
-                                    <p></p>
-                                </div>
-                            </li>
+                            <li><a zz="yls" name="" class="on">不限</a></li>
+{#                            {% for price in all_car_prices %}#}
+{#                            <li><a zz="yls" name="{{ price.price }}">{{ price.price }}</a></li>#}
+{#                            {% endfor %}#}
+                            <li><a zz="yls" name="0-3">0-3万</a></li>
+                            <li><a zz="yls" name="3-5">3-5万</a></li>
+                            <li><a zz="yls" name="5-8">5-8万</a></li>
+                            <li><a zz="yls" name="8-10">8-10万</a></li>
+                            <li><a zz="yls" name="10-12">10-12万</a></li>
+                            <li><a zz="yls" name="12-15">12-15万</a></li>
+                            <li><a zz="yls" name="15-999">15万以上</a></li>
+{#                            <li>#}
+{#                                <div class="custom">#}
+{#                                    <p class="p1">#}
+{#                                        <span style="color:#777;">自定义价格</span>#}
+{#                                        <input class="i1 xde">-<input class="dde i1">#}
+{#                                    </p>#}
+{#                                    <p class="sure">#}
+{#                                        <button class="queding">确定</button>#}
+{#                                    </p>#}
+{#                                    <p></p>#}
+{#                                </div>#}
+{#                            </li>#}
                         </ul>
                     </div>
                 </div>
@@ -3177,7 +3178,7 @@
                     </h4>
                     <div style="z-index: 4;" class="content">
                         <ul class="sx">
-                            <li><a zz="zz" name="0" class="on">不限</a></li>
+                            <li><a zz="zz" name="" class="on">不限</a></li>
                             <li><a zz="zz" name="0-1">1年以内</a></li>
                             <li><a zz="zz" name="1-3">1-3年</a></li>
                             <li><a zz="zz" name="3-5">3-5年</a></li>
@@ -3205,27 +3206,31 @@
                     </h4>
                     <div class="content">
                         <ul style="display: none;" class="js_more_list brand_list">
-                            {% for area in choice_areas %}
-                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
-                            {% endfor %}
-{#                            <li><a name="思明" zz="guishudi">思明</a></li>#}
-{#                            <li><a name="集美" zz="guishudi">集美</a></li>#}
-{#                            <li><a name="杏林" zz="guishudi">杏林</a></li>#}
-{#                            <li><a name="海沧" zz="guishudi">海沧</a></li>#}
-{#                            <li><a name="翔安" zz="guishudi">翔安</a></li>#}
-{#                            <li><a name="同安" zz="guishudi">同安</a></li>#}
+{#                            {% for area in choice_areas %}#}
+{#                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>#}
+{#                            {% endfor %}#}
+                            <li><a name="0" zz="guishudi">思明区</a></li>
+                            <li><a name="1" zz="guishudi">湖里区</a></li>
+                            <li><a name="2" zz="guishudi">集美区</a></li>
+                            <li><a name="3" zz="guishudi">杏林区</a></li>
+                            <li><a name="4" zz="guishudi">海沧区</a></li>
+                            <li><a name="5" zz="guishudi">翔安区</a></li>
+                            <li><a name="6" zz="guishudi">芗城区</a></li>
+                            <li><a name="7" zz="guishudi">龙文区</a></li>
                         </ul>
                         <ul class="ls_collapse" style="display: block;">
-                            <li><a class="on" name="0" zz="guishudi">不限</a></li>
-                           {% for area in choice_areas %}
-                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>
-                            {% endfor %}
-{#                            <li><a name="思明" zz="guishudi">思明</a></li>#}
-{#                            <li><a name="集美" zz="guishudi">集美</a></li>#}
-{#                            <li><a name="杏林" zz="guishudi">杏林</a></li>#}
-{#                            <li><a name="海沧" zz="guishudi">海沧</a></li>#}
-{#                            <li><a name="翔安" zz="guishudi">翔安</a></li>#}
-{#                            <li><a name="同安" zz="guishudi">同安</a></li>#}
+                            <li><a class="on" name="" zz="guishudi">不限</a></li>
+{#                           {% for area in choice_areas %}#}
+{#                            <li><a name="{{ area }}" zz="guishudi">{{ area }}</a></li>#}
+{#                            {% endfor %}#}
+                            <li><a name="0" zz="guishudi">思明区</a></li>
+                            <li><a name="1" zz="guishudi">湖里区</a></li>
+                            <li><a name="2" zz="guishudi">集美区</a></li>
+                            <li><a name="3" zz="guishudi">杏林区</a></li>
+                            <li><a name="4" zz="guishudi">海沧区</a></li>
+                            <li><a name="5" zz="guishudi">翔安区</a></li>
+                            <li><a name="6" zz="guishudi">芗城区</a></li>
+                            <li><a name="7" zz="guishudi">龙文区</a></li>
                         </ul>
                         <span id="js_more" zt="0" class="btn btn-more js_m">
                             <a id="areaLinkMore" style="display:block;right: -2px;width: 44px;top: 0;border-radius: 0;"

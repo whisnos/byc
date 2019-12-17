@@ -6,7 +6,12 @@ from users.models import CarBrand, CarPriceInfo, CarInfo
 
 
 def index(request):
-    return render(request, 'index.html')
+    chao_di=CarInfo.objects.filter(car_type=4).order_by('add_time')[:6]
+    re_men=CarInfo.objects.filter(car_type=3).order_by('add_time')[:6]
+    return render(request, 'index.html',{
+        "chao_di":chao_di,
+        "re_men":re_men
+    })
 
 
 def buy_car(request):

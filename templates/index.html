@@ -98,13 +98,14 @@
                 class="more"
                 href="http://www.bangyiche.com/cldq.php?paifang=%E7%83%AD%E9%97%A8%E7%BB%83%E6%89%8B">更多&gt;</a></p>
         <ul class="ches clear">
+            {% for car in re_men %}
             <li class="left "
                 style="background:url(/FYUP/image/image/20191026/20191026134351_50450.jpg) no-repeat center center; background-size: cover;">
                 <a href="http://www.bangyiche.com/cpx.php?/160.html">
                     <div class="xiangq">
                         <div class="bg"></div>
                         <div class="left">
-                            <p class="bt biaotis">11年3月比亚迪F0，朋友的车，价格私聊</p>
+                            <p class="bt biaotis">{{ car.title }}</p>
                             <p>
                                 <span class="lc">3万公里</span>
                                 <span class="year">2013年</span>
@@ -118,106 +119,107 @@
                     </div>
                 </a>
             </li>
-            <li class="left "
-                style="background:url(/FYUP/image/image/20150930/20150930153852_19557.jpg) no-repeat center center; background-size: cover;">
-                <a href="http://www.bangyiche.com/cpx.php?/158.html">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">03款 长安铃木-羚羊 03年8月上牌 </p>
-                            <p>
-                                <span class="lc">15万公里</span>
-                                <span class="year">2003年</span>
-                                <span class="dq">集美</span>
-                            </p>
-                        </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">0.68</span>万</p>
-                            <p class="jie">已省6.28万元</p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="left three"
-                style="background:url(/FYUP/image/image/20150916/20150916215219_45273.jpg) no-repeat center center; background-size: cover;">
-                <a href="http://www.bangyiche.com/cpx.php?/150.html">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">09款 一汽威志 1.5L 主副带一键降</p>
-                            <p>
-                                <span class="lc">9.4万公里</span>
-                                <span class="year">2011年</span>
-                                <span class="dq">湖里</span>
-                            </p>
-                        </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">2.88</span>万</p>
-                            <p class="jie">已省2.92万元</p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="left "
-                style="background:url(/FYUP/image/image/20150916/20150916195349_62871.jpg) no-repeat center center; background-size: cover;">
-                <a href="http://www.bangyiche.com/cpx.php?/149.html">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">2012款 雪铁龙C2 1.4L 舒适版</p>
-                            <p>
-                                <span class="lc">6.8万公里</span>
-                                <span class="year">2012年</span>
-                                <span class="dq">湖里</span>
-                            </p>
-                        </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">3.98</span>万</p>
-                            <p class="jie">已省3.41万元</p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="left "
-                style="background:url(/FYUP/image/image/20150912/20150912145921_47052.jpg) no-repeat center center; background-size: cover;">
-                <a href="http://www.bangyiche.com/cpx.php?/142.html">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">【精品吉利帝豪】EC7 1.8 三厢 </p>
-                            <p>
-                                <span class="lc">6万公里</span>
-                                <span class="year">2011年</span>
-                                <span class="dq">集美</span>
-                            </p>
-                        </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">4.98</span>万</p>
-                            <p class="jie">已省4万万元</p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="left three"
-                style="background:url(/FYUP/image/image/20150826/20150826211308_31074.jpg) no-repeat center center; background-size: cover;">
-                <a href="http://www.bangyiche.com/cpx.php?/136.html">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">11款 比亚迪L3 新锋畅版 手动1.5</p>
-                            <p>
-                                <span class="lc">4万公里</span>
-                                <span class="year">2013年</span>
-                                <span class="dq">集美</span>
-                            </p>
-                        </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">4.88</span>万</p>
-                            <p class="jie">已省1.99万元</p>
-                        </div>
-                    </div>
-                </a>
-            </li>
+            {% endfor %}
+{#            <li class="left "#}
+{#                style="background:url(/FYUP/image/image/20150930/20150930153852_19557.jpg) no-repeat center center; background-size: cover;">#}
+{#                <a href="http://www.bangyiche.com/cpx.php?/158.html">#}
+{#                    <div class="xiangq">#}
+{#                        <div class="bg"></div>#}
+{#                        <div class="left">#}
+{#                            <p class="bt biaotis">03款 长安铃木-羚羊 03年8月上牌 </p>#}
+{#                            <p>#}
+{#                                <span class="lc">15万公里</span>#}
+{#                                <span class="year">2003年</span>#}
+{#                                <span class="dq">集美</span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="right">#}
+{#                            <p class="jg">￥<span class="num">0.68</span>万</p>#}
+{#                            <p class="jie">已省6.28万元</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="left three"#}
+{#                style="background:url(/FYUP/image/image/20150916/20150916215219_45273.jpg) no-repeat center center; background-size: cover;">#}
+{#                <a href="http://www.bangyiche.com/cpx.php?/150.html">#}
+{#                    <div class="xiangq">#}
+{#                        <div class="bg"></div>#}
+{#                        <div class="left">#}
+{#                            <p class="bt biaotis">09款 一汽威志 1.5L 主副带一键降</p>#}
+{#                            <p>#}
+{#                                <span class="lc">9.4万公里</span>#}
+{#                                <span class="year">2011年</span>#}
+{#                                <span class="dq">湖里</span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="right">#}
+{#                            <p class="jg">￥<span class="num">2.88</span>万</p>#}
+{#                            <p class="jie">已省2.92万元</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="left "#}
+{#                style="background:url(/FYUP/image/image/20150916/20150916195349_62871.jpg) no-repeat center center; background-size: cover;">#}
+{#                <a href="http://www.bangyiche.com/cpx.php?/149.html">#}
+{#                    <div class="xiangq">#}
+{#                        <div class="bg"></div>#}
+{#                        <div class="left">#}
+{#                            <p class="bt biaotis">2012款 雪铁龙C2 1.4L 舒适版</p>#}
+{#                            <p>#}
+{#                                <span class="lc">6.8万公里</span>#}
+{#                                <span class="year">2012年</span>#}
+{#                                <span class="dq">湖里</span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="right">#}
+{#                            <p class="jg">￥<span class="num">3.98</span>万</p>#}
+{#                            <p class="jie">已省3.41万元</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="left "#}
+{#                style="background:url(/FYUP/image/image/20150912/20150912145921_47052.jpg) no-repeat center center; background-size: cover;">#}
+{#                <a href="http://www.bangyiche.com/cpx.php?/142.html">#}
+{#                    <div class="xiangq">#}
+{#                        <div class="bg"></div>#}
+{#                        <div class="left">#}
+{#                            <p class="bt biaotis">【精品吉利帝豪】EC7 1.8 三厢 </p>#}
+{#                            <p>#}
+{#                                <span class="lc">6万公里</span>#}
+{#                                <span class="year">2011年</span>#}
+{#                                <span class="dq">集美</span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="right">#}
+{#                            <p class="jg">￥<span class="num">4.98</span>万</p>#}
+{#                            <p class="jie">已省4万万元</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
+{#            <li class="left three"#}
+{#                style="background:url(/FYUP/image/image/20150826/20150826211308_31074.jpg) no-repeat center center; background-size: cover;">#}
+{#                <a href="http://www.bangyiche.com/cpx.php?/136.html">#}
+{#                    <div class="xiangq">#}
+{#                        <div class="bg"></div>#}
+{#                        <div class="left">#}
+{#                            <p class="bt biaotis">11款 比亚迪L3 新锋畅版 手动1.5</p>#}
+{#                            <p>#}
+{#                                <span class="lc">4万公里</span>#}
+{#                                <span class="year">2013年</span>#}
+{#                                <span class="dq">集美</span>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="right">#}
+{#                            <p class="jg">￥<span class="num">4.88</span>万</p>#}
+{#                            <p class="jie">已省1.99万元</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
         </ul>
         <p class="tit clear"><span class="fk left"></span>超值低价<span class="ms">车主急售，特价豪车</span><a class="more"
                                                                                                   href="http://www.bangyiche.com/cldq.php?paifang=%E8%B6%85%E5%80%BC%E4%BD%8E%E4%BB%B7">更多&gt;</a>

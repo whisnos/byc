@@ -254,58 +254,59 @@ $(".okk").click(function(){
 
 
 // 预约
-$(".querentijiaos").click(function(){
-	var name=$(this).parents(".tianxie").find(".name").val();
-	var addr=$(this).parents(".tianxie").find(".addr").val();
-	var qq=$(this).parents(".tianxie").find(".qq").val();
-	var tel=$(this).parents(".tianxie").find(".tel").val();
-	if(name==""||addr==""||qq==""||tel==""){
-		$(".tc").find(".wen").html('请填写完整');
-		$(".tc").css("display","block");
-		return false;
-	}
-	if(isNaN(qq)){
-		$(".tc").find(".wen").html('请输入正确的QQ号码');
-		$(".tc").css("display","block");
-		$(".qq").val('');
-		return false;
-	}
-	if(!/(1[3-9]\d{9}$)/.test(tel)){
-		$(".tc").find(".wen").html('请输入正确的手机号码');
-		$(".tc").css("display","block");
-		$(".tel").val('');
-		return false;
-	}
-	$.post('cl.php',{
-		name:name,
-		addr:addr,
-		qq:qq,
-		tel:tel,
-		dd:'mmsaiche'
-	},function(data){
-		if(data=='ok'){
-		$(".tc").find(".wen").html('预约成功，我们会尽快处理');
-		$(".tc").css("display","block");
-			$('.tcbg').find(".name").val('');
-			$('.tcbg').find(".addr").val('');
-			$('.tcbg').find(".qq").val('');
-			$('.tcbg').find(".tel").val('');
-			$(".tcbg").css("display","none");
-		}else if(data=='1'){
-		$(".tc").find(".wen").html('您已经预约过！我们会尽快处理');
-		$(".tc").css("display","block");
-		return false;
-		}
-	});
-})
+// $(".querentijiaos").click(function(){
+// 	var name=$(this).parents(".tianxie").find(".name").val();
+// 	var addr=$(this).parents(".tianxie").find(".addr").val();
+// 	var qq=$(this).parents(".tianxie").find(".qq").val();
+// 	var tel=$(this).parents(".tianxie").find(".tel").val();
+// 	if(name==""||addr==""||qq==""||tel==""){
+// 		$(".tc").find(".wen").html('请填写完整');
+// 		$(".tc").css("display","block");
+// 		return false;
+// 	}
+// 	if(isNaN(qq)){
+// 		$(".tc").find(".wen").html('请输入正确的QQ号码');
+// 		$(".tc").css("display","block");
+// 		$(".qq").val('');
+// 		return false;
+// 	}
+// 	if(!/(1[3-9]\d{9}$)/.test(tel)){
+// 		$(".tc").find(".wen").html('请输入正确的手机号码');
+// 		$(".tc").css("display","block");
+// 		$(".tel").val('');
+// 		return false;
+// 	}
+// 	$.get('user_buy_car/',{
+// 		name:name,
+// 		addr:addr,
+// 		qq:qq,
+// 		tel:tel,
+// 		dd:'mmsaiche'
+// 	},function(data){
+// 		if(data=='ok'){
+// 		$(".tc").find(".wen").html('预约成功，我们会尽快处理');
+// 		$(".tc").css("display","block");
+// 			$('.tcbg').find(".name").val('');
+// 			$('.tcbg').find(".addr").val('');
+// 			$('.tcbg').find(".qq").val('');
+// 			$('.tcbg').find(".tel").val('');
+// 			$(".tcbg").css("display","none");
+// 		}else if(data=='1'){
+// 		$(".tc").find(".wen").html('您已经预约过！我们会尽快处理');
+// 		$(".tc").css("display","block");
+// 		return false;
+// 		}
+// 	});
+// })
 // 买车
 $(".mmaiche").click(function(){
 	var name=$(this).parents(".mai").find(".name").val();
 	var num=$(this).parents(".mai").find(".num").val();
 	var car=$(this).parents(".mai").find(".car").val();
-	var jihua=$(this).parents(".mai").find(".jihua").attr("placeholder");
 	var xuqiu=$(this).parents(".mai").find(".xuqiu").val();
-	if(name==""||num==""||car==""||jihua==""||jihua=="买车时间"||xuqiu==""){
+	var type=$(this).parents(".mai").find(".type").val();
+	var addr=$(this).parents(".mai").find(".jihua").val();
+	if(name==""||num==""||car==""||xuqiu==""||addr==""){
 		$(".tc").find(".wen").html('请填写完整');
 		$(".tc").css("display","block");
 		return false;
@@ -316,22 +317,26 @@ $(".mmaiche").click(function(){
 		$(".num").val('');
 		return false;
 	}
-	$.post('cl.php',{
+	console.log('buy',type)
+	$.post('user_buy_car/',{
 		name:name,
 		num:num,
 		car:car,
-		jihua:jihua,
 		xuqiu:xuqiu,
-		dd:'mmaiche'
+		type:type,
+		addr:addr,
+		csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val()
 	},function(data){
+		console.log('data',data)
 		if(data=='ok'){
 		$(".tc").find(".wen").html('预约成功，我们会尽快处理');
 		$(".tc").css("display","block");
 		$(".mai").find(".name").val("");
 		$(".mai").find(".num").val("");
 		$(".mai").find(".car").val("");
-		$(".mai").find(".jihua").attr("placeholder",'买车时间');
 		$(".mai").find(".xuqiu").val("");
+		$(".mai").find(".type").val("");
+		$(".mai").find(".jihua").val("");
 		}else if(data=='1'){
 		$(".tc").find(".wen").html('您已经预约过！我们会尽快处理');
 		$(".tc").css("display","block");
@@ -345,9 +350,9 @@ $(".mmmaiche").click(function(){
 	var num=$(this).parents(".mai").find(".num").val();
 	var addr=$(this).parents(".mai").find(".addr").val();
 	var car=$(this).parents(".mai").find(".car").val();
-	var jihua=$(this).parents(".mai").find(".jihua").attr("placeholder");
 	var xuqiu=$(this).parents(".mai").find(".xuqiu").val();
-	if(name==""||num==""||car==""||jihua==""||jihua=="卖车时间"||xuqiu==""||addr==""){
+	var type=$(this).parents(".mai").find(".type").val();
+	if(name==""||num==""||car==""||xuqiu==""||addr==""){
 		$(".tc").find(".wen").html('请填写完整');
 		$(".tc").css("display","block");
 		return false;
@@ -358,14 +363,14 @@ $(".mmmaiche").click(function(){
 		$(".num").val('');
 		return false;
 	}
-	$.post('cl.php',{
+	$.post('user_buy_car/',{
 		name:name,
 		num:num,
 		car:car,
-		jihua:jihua,
 		xuqiu:xuqiu,
+		type:type,
 		addr:addr,
-		dd:'mmmaiche'
+		csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val()
 	},function(data){
 		if(data=='ok'){
 		$(".tc").find(".wen").html('预约成功，我们会尽快处理');
@@ -374,7 +379,6 @@ $(".mmmaiche").click(function(){
 		$(".mai").find(".num").val("");
 		$(".mai").find(".addr").val("");
 		$(".mai").find(".car").val("");
-		$(".mai").find(".jihua").attr("placeholder",'卖车时间');
 		$(".mai").find(".xuqiu").val("");
 		}else if(data=='1'){
 		$(".tc").find(".wen").html('您已经预约过！我们会尽快处理');

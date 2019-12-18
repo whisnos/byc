@@ -16,25 +16,25 @@
             <ul style="position: relative; width: 1920px; height: 450px;">
 
 
-                <li style="background-image: url(&quot;../static/img/20150802164008_39089.png&quot;); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: list-item;">
+                <li style="background-image: url(../static/img/20150802164008_39089.png); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: list-item;">
                     <a href="http://www.bangyiche.com/" target="_blank"
                        style="display:block;width:100%;height:100%;"></a>
                 </li>
 
 
-                <li style="background-image: url(&quot;../static/img/20150626001529_79090.jpg&quot;); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
+                <li style="background-image: url(../static/img/20150802173045_41330.jpg); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
                     <a href="http://www.bangyiche.com/" target="_blank"
                        style="display:block;width:100%;height:100%;"></a>
                 </li>
 
 
-                <li style="background-image: url(&quot;/FYUP/image/image/20150626/20150626001529_79090.jpg&quot;); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
+                <li style="background-image: url(../static/img/20150802164008_39089.png); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
                     <a href="http://www.bangyiche.com/" target="_blank"
                        style="display:block;width:100%;height:100%;"></a>
                 </li>
 
 
-                <li style="background-image: url(&quot;/FYUP/image/image/20150626/20150626001529_79090.jpg&quot;); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
+                <li style="background-image: url(../static/img/20150802173045_41330.jpg); position: absolute; width: 1920px; height: 100%; left: 0px; top: 0px; background-position: 50% 0px; background-repeat: no-repeat; display: none;">
                     <a href="http://www.bangyiche.com/" target="_blank"
                        style="display:block;width:100%;height:100%;"></a>
                 </li>
@@ -66,11 +66,14 @@
             <div class="bg"></div>
             <p class="iwant">我要买车</p>
             <form action="javascript:;" method="post" class="mai">
+                {% csrf_token %}
                 <input type="text" name="name" class="name" placeholder="姓名">
                 <input type="text" name="num" class="num" placeholder="手机号码,QQ">
                 <input type="text" name="car" class="car" placeholder="车型">
-                <input type="text" name="jihua" class="jihua" placeholder="买车时间" id="datetimepicker3" readonly="true"
-                       dd="">
+                <input type="text" name="addr" class="jihua" placeholder="车辆所在地">
+                {#                <input type="text" name="addr" class="addr" placeholder="车辆所在地">#}
+                <input type="hidden" name="type" class="type" value="0" placeholder="买车">
+
                 <textarea name="xuqiu" class="xuqiu" placeholder="您想购买什么品牌及车型，预算是多少？"></textarea>
                 <input type="submit" value="帮我买车" class="tijiao mmaiche">
             </form>
@@ -83,8 +86,9 @@
                 <input type="text" name="num" class="num" placeholder="手机号码">
                 <input type="text" name="addr" class="addr" placeholder="车辆所在地">
                 <input type="text" name="car" class="car" placeholder="车型">
-                <input type="text" name="jihua" class="jihua" placeholder="卖车时间" id="datetimepicker3" readonly="true"
-                       dd="">
+                <input type="hidden" name="type" class="type" value="1" placeholder="卖车">
+                {#                <input type="text" name="jihua" class="jihua" placeholder="卖车时间" id="datetimepicker3" readonly="true"#}
+                {#                       dd="">#}
                 <div class="baoq">
                 </div>
                 <div class="baoq2">
@@ -94,231 +98,239 @@
         </div>
     </div>
     <div class="main shouche">
-        <p class="tit clear" style="margin-top:0;"><span class="fk left"></span>热门练手<span class="ms">热门畅销，容易上手</span><a
-                class="more"
-                href="http://www.bangyiche.com/cldq.php?paifang=%E7%83%AD%E9%97%A8%E7%BB%83%E6%89%8B">更多&gt;</a></p>
+        <p class="tit clear" style="margin-top:0;"><span class="fk left"></span>热门练手<span class="ms">热门畅销，容易上手</span>
+            {#            <a class="more" href="http://www.bangyiche.com/cldq.php?paifang=%E7%83%AD%E9%97%A8%E7%BB%83%E6%89%8B">更多&gt;</a>#}
+        </p>
         <ul class="ches clear">
             {% for car in re_men %}
-            <li class="left three"
-                style="background:url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
-                <a href="#">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">{{ car.title }}</p>
-                            <p>
-                                <span class="lc">{{ car.car_km }}万公里</span>
-                                <span class="year">{{ car.up_time|date }}</span>
-                                <span class="dq">{{ car.get_area_display }}</span>
-                            </p>
+                <li class="left three"
+                    style="background:url(
+                            {{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
+                    <a href="#">
+                        <div class="xiangq">
+                            <div class="bg"></div>
+                            <div class="left">
+                                <p class="bt biaotis">{{ car.title }}</p>
+                                <p>
+                                    <span class="lc">{{ car.car_km }}万公里</span>
+                                    <span class="year">{{ car.up_time|date }}</span>
+                                    <span class="dq">{{ car.get_area_display }}</span>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
+                                {#                            <p class="jie">已省7.76万元</p>#}
+                            </div>
                         </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
-{#                            <p class="jie">已省7.76万元</p>#}
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-        <p class="tit clear"><span class="fk left"></span>超值低价<span class="ms">车主急售，特价豪车</span><a class="more"
-                                                                                                  href="http://www.bangyiche.com/cldq.php?paifang=%E8%B6%85%E5%80%BC%E4%BD%8E%E4%BB%B7">更多&gt;</a>
+        <p class="tit clear"><span class="fk left"></span>超值低价<span class="ms">车主急售，特价豪车</span>
+            {#            <a class="more"#}
+            {#               href="http://www.bangyiche.com/cldq.php?paifang=%E8%B6%85%E5%80%BC%E4%BD%8E%E4%BB%B7">更多&gt;</a>#}
         </p>
         <ul class="ches clear">
             {% for car in chao_di %}
-            <li class="left three"
-                style="background:url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
-                <a href="#">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">{{ car.title }}</p>
-                            <p>
-                                <span class="lc">{{ car.car_km }}万公里</span>
-                                <span class="year">{{ car.up_time|date }}</span>
-                                <span class="dq">{{ car.get_area_display }}</span>
-                            </p>
+                <li class="left three"
+                    style="background:url(
+                            {{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
+                    <a href="#">
+                        <div class="xiangq">
+                            <div class="bg"></div>
+                            <div class="left">
+                                <p class="bt biaotis">{{ car.title }}</p>
+                                <p>
+                                    <span class="lc">{{ car.car_km }}万公里</span>
+                                    <span class="year">{{ car.up_time|date }}</span>
+                                    <span class="dq">{{ car.get_area_display }}</span>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
+                                {#                            <p class="jie">已省7.76万元</p>#}
+                            </div>
                         </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
-{#                            <p class="jie">已省7.76万元</p>#}
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-        <p class="tit clear"><span class="fk left"></span>经济实用<span class="ms">实用省油，居家首选</span><a class="more"
-                                                                                                  href="http://www.bangyiche.com/cldq.php?paifang=%E7%BB%8F%E6%B5%8E%E5%AE%9E%E7%94%A8">更多&gt;</a>
+        <p class="tit clear"><span class="fk left"></span>经济实用<span class="ms">实用省油，居家首选</span>
+            {#            <a class="more"#}
+            {#               href="http://www.bangyiche.com/cldq.php?paifang=%E7%BB%8F%E6%B5%8E%E5%AE%9E%E7%94%A8">更多&gt;</a>#}
         </p>
         <ul class="ches clear">
             {% for car in jing_ji %}
-            <li class="left three"
-                style="background:url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
-                <a href="#">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">{{ car.title }}</p>
-                            <p>
-                                <span class="lc">{{ car.car_km }}万公里</span>
-                                <span class="year">{{ car.up_time|date }}</span>
-                                <span class="dq">{{ car.get_area_display }}</span>
-                            </p>
+                <li class="left three"
+                    style="background:url(
+                            {{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
+                    <a href="#">
+                        <div class="xiangq">
+                            <div class="bg"></div>
+                            <div class="left">
+                                <p class="bt biaotis">{{ car.title }}</p>
+                                <p>
+                                    <span class="lc">{{ car.car_km }}万公里</span>
+                                    <span class="year">{{ car.up_time|date }}</span>
+                                    <span class="dq">{{ car.get_area_display }}</span>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
+                                {#                            <p class="jie">已省7.76万元</p>#}
+                            </div>
                         </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
-{#                            <p class="jie">已省7.76万元</p>#}
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-        <p class="tit clear"><span class="fk left"></span>经典SUV<span class="ms">超大空间，方便出行</span><a class="more"
-                                                                                                   href="http://www.bangyiche.com/cldq.php?paifang=%E7%BB%8F%E5%85%B8SUV">更多&gt;</a>
+        <p class="tit clear"><span class="fk left"></span>经典SUV<span class="ms">超大空间，方便出行</span>
+            {#            <a class="more" href="http://127.0.0.1:8000/buy_car/?pf=1">更多&gt;</a>#}
         </p>
         <ul class="ches clear">
             {% for car in super_suv %}
-            <li class="left three"
-                style="background:url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
-                <a href="#">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">{{ car.title }}</p>
-                            <p>
-                                <span class="lc">{{ car.car_km }}万公里</span>
-                                <span class="year">{{ car.up_time|date }}</span>
-                                <span class="dq">{{ car.get_area_display }}</span>
-                            </p>
+                <li class="left three"
+                    style="background:url(
+                            {{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
+                    <a href="#">
+                        <div class="xiangq">
+                            <div class="bg"></div>
+                            <div class="left">
+                                <p class="bt biaotis">{{ car.title }}</p>
+                                <p>
+                                    <span class="lc">{{ car.car_km }}万公里</span>
+                                    <span class="year">{{ car.up_time|date }}</span>
+                                    <span class="dq">{{ car.get_area_display }}</span>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
+                                {#                            <p class="jie">已省7.76万元</p>#}
+                            </div>
                         </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
-{#                            <p class="jie">已省7.76万元</p>#}
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-        <p class="tit clear"><span class="fk left"></span>面包车酷<span class="ms">人人面包，载货必备</span><a class="more"
-                                                                                                  href="http://www.bangyiche.com/cldq.php?paifang=%E9%9D%A2%E5%8C%85%E8%BD%A6%E9%85%B7">更多&gt;</a>
+        <p class="tit clear"><span class="fk left"></span>面包车酷<span class="ms">人人面包，载货必备</span>
+{#            <a class="more"#}
+{#               href="http://www.bangyiche.com/cldq.php?paifang=%E9%9D%A2%E5%8C%85%E8%BD%A6%E9%85%B7">更多&gt;</a>#}
         </p>
         <ul class="ches clear">
             {% for car in mian_bao %}
-            <li class="left three"
-                style="background:url({{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
-                <a href="#">
-                    <div class="xiangq">
-                        <div class="bg"></div>
-                        <div class="left">
-                            <p class="bt biaotis">{{ car.title }}</p>
-                            <p>
-                                <span class="lc">{{ car.car_km }}万公里</span>
-                                <span class="year">{{ car.up_time|date }}</span>
-                                <span class="dq">{{ car.get_area_display }}</span>
-                            </p>
+                <li class="left three"
+                    style="background:url(
+                            {{ MEDIA_URL }}{{ car.car_image }}) no-repeat center center; background-size: cover;">
+                    <a href="#">
+                        <div class="xiangq">
+                            <div class="bg"></div>
+                            <div class="left">
+                                <p class="bt biaotis">{{ car.title }}</p>
+                                <p>
+                                    <span class="lc">{{ car.car_km }}万公里</span>
+                                    <span class="year">{{ car.up_time|date }}</span>
+                                    <span class="dq">{{ car.get_area_display }}</span>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
+                                {#                            <p class="jie">已省7.76万元</p>#}
+                            </div>
                         </div>
-                        <div class="right">
-                            <p class="jg">￥<span class="num">{{ car.car_price }}</span>万</p>
-{#                            <p class="jie">已省7.76万元</p>#}
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-        <a href="http://www.bangyiche.com/cldq.php" class="gmore">查看更多</a>
+        {#        <a href="http://www.bangyiche.com/cldq.php" class="gmore">查看更多</a>#}
     </div>
-    <div class="main">
-        <ul class="other clear">
-            <li class="left frist">
-                <a href="http://www.bangyiche.com/ycsj.php?/0_6_1"><p class="tit2">好车故事</p></a>
-                <a href="http://www.bangyiche.com/ycsjx.php?/104.html">
-                    <div class="img"
-                         style="background:url(/FYUP/image/image/20150811/20150811002443_50666.jpg) no-repeat center center; background-size: cover;">
-                        <p class="bg"></p>
-                        <p class="bt">2015款 哈弗H1 1.5L 手动豪华型 怎么样</p>
-                    </div>
-                </a>
-                <ul class="list">
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/102.html">好车故事测试</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/24.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/22.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/20.html">不改装的路虎都是火柴盒</a></li>
-                </ul>
-            </li>
-            <li class="left">
-                <a href="http://www.bangyiche.com/ycsj.php?/0_6_2"><p class="tit2">检测保障</p></a>
-                <a href="http://www.bangyiche.com/ycsjx.php?/103.html">
-                    <div class="img"
-                         style="background:url(/FYUP/image/image/20150826/20150826005001_27474.jpg) no-repeat center center; background-size: cover;">
-                        <p class="bg"></p>
-                        <p class="bt">检查测试</p>
-                    </div>
-                </a>
-                <ul class="list">
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/48.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/47.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/46.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/45.html">不改装的路虎都是火柴盒</a></li>
-                </ul>
-            </li>
-            <li class="left">
-                <a href="http://www.bangyiche.com/ycsj.php?/0_6_3"><p class="tit2">二手车问答</p></a>
-                <a href="http://www.bangyiche.com/ycsjx.php?/105.html">
-                    <div class="img"
-                         style="background:url(/FYUP/image/image/20150812/20150812102907_38899.jpg) no-repeat center center; background-size: cover;">
-                        <p class="bg"></p>
-                        <p class="bt">想把自己的车卖出去，怎么避免被坑，卖二手车要注意什么？</p>
-                    </div>
-                </a>
-                <ul class="list">
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/68.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/107.html">手动挡、自动挡 手自一体和无级变速区别以及哪个更省油？</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/72.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/71.html">不改装的路虎都是火柴盒</a></li>
-                </ul>
-            </li>
-            <li class="left last">
-                <a href="http://www.bangyiche.com/ycsj.php?/0_6_4"><p class="tit2">好车杂谈</p></a>
-                <a href="http://www.bangyiche.com/ycsjx.php?/106.html">
-                    <div class="img"
-                         style="background:url(/FYUP/image/image/20150812/20150812131117_16349.jpg) no-repeat center center; background-size: cover;">
-                        <p class="bg"></p>
-                        <p class="bt">让我们一起来谈谈长城哈弗H3，你不知道的事</p>
-                    </div>
-                </a>
-                <ul class="list">
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/83.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/96.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/95.html">不改装的路虎都是火柴盒</a></li>
-                    <li><a href="http://www.bangyiche.com/ycsjx.php?/94.html">不改装的路虎都是火柴盒</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    {#    <div class="main">#}
+    {#        <ul class="other clear">#}
+    {#            <li class="left frist">#}
+    {#                <a href="http://www.bangyiche.com/ycsj.php?/0_6_1"><p class="tit2">好车故事</p></a>#}
+    {#                <a href="http://www.bangyiche.com/ycsjx.php?/104.html">#}
+    {#                    <div class="img"#}
+    {#                         style="background:url(/FYUP/image/image/20150811/20150811002443_50666.jpg) no-repeat center center; background-size: cover;">#}
+    {#                        <p class="bg"></p>#}
+    {#                        <p class="bt">2015款 哈弗H1 1.5L 手动豪华型 怎么样</p>#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <ul class="list">#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/102.html">好车故事测试</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/24.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/22.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/20.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                </ul>#}
+    {#            </li>#}
+    {#            <li class="left">#}
+    {#                <a href="http://www.bangyiche.com/ycsj.php?/0_6_2"><p class="tit2">检测保障</p></a>#}
+    {#                <a href="http://www.bangyiche.com/ycsjx.php?/103.html">#}
+    {#                    <div class="img"#}
+    {#                         style="background:url(/FYUP/image/image/20150826/20150826005001_27474.jpg) no-repeat center center; background-size: cover;">#}
+    {#                        <p class="bg"></p>#}
+    {#                        <p class="bt">检查测试</p>#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <ul class="list">#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/48.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/47.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/46.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/45.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                </ul>#}
+    {#            </li>#}
+    {#            <li class="left">#}
+    {#                <a href="http://www.bangyiche.com/ycsj.php?/0_6_3"><p class="tit2">二手车问答</p></a>#}
+    {#                <a href="http://www.bangyiche.com/ycsjx.php?/105.html">#}
+    {#                    <div class="img"#}
+    {#                         style="background:url(/FYUP/image/image/20150812/20150812102907_38899.jpg) no-repeat center center; background-size: cover;">#}
+    {#                        <p class="bg"></p>#}
+    {#                        <p class="bt">想把自己的车卖出去，怎么避免被坑，卖二手车要注意什么？</p>#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <ul class="list">#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/68.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/107.html">手动挡、自动挡 手自一体和无级变速区别以及哪个更省油？</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/72.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/71.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                </ul>#}
+    {#            </li>#}
+    {#            <li class="left last">#}
+    {#                <a href="http://www.bangyiche.com/ycsj.php?/0_6_4"><p class="tit2">好车杂谈</p></a>#}
+    {#                <a href="http://www.bangyiche.com/ycsjx.php?/106.html">#}
+    {#                    <div class="img"#}
+    {#                         style="background:url(/FYUP/image/image/20150812/20150812131117_16349.jpg) no-repeat center center; background-size: cover;">#}
+    {#                        <p class="bg"></p>#}
+    {#                        <p class="bt">让我们一起来谈谈长城哈弗H3，你不知道的事</p>#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <ul class="list">#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/83.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/96.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/95.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                    <li><a href="http://www.bangyiche.com/ycsjx.php?/94.html">不改装的路虎都是火柴盒</a></li>#}
+    {#                </ul>#}
+    {#            </li>#}
+    {#        </ul>#}
+    {#    </div>#}
     <div class="all gaozhi">
         <div class="main">
             <ul class="clear">
-                <li style="background:url(/FYUP/image/image/20150802/20150802125345_12609.jpg) no-repeat center 25px;">
+                <li style="background:url(../static/img/01.jpg) no-repeat center 25px;">
                     <p class="one">车源保证</p>
                     <p>100%个人二手车</p>
                 </li>
-                <li style="background:url(/FYUP/image/image/20150802/20150802125420_49877.jpg) no-repeat center 25px;">
+                <li style="background:url(../static/img/02.jpg) no-repeat center 25px;">
                     <p class="one">218项专业检测</p>
                     <p>100%确保无事故，无火烧，无泡水</p>
                 </li>
-                <li style="background:url(/FYUP/image/image/20150802/20150802125447_26973.jpg) no-repeat center 25px;">
+                <li style="background:url(../static/img/03.jpg) no-repeat center 25px;">
                     <p class="one">交易透明无隐瞒</p>
                     <p>买卖双方面对面谈价格</p>
                 </li>
-                <li style="background:url(/FYUP/image/image/20150802/20150802125531_63569.jpg) no-repeat center 25px;">
+                <li style="background:url(../static/img/04.jpg) no-repeat center 25px;">
                     <p class="one">一站式服务</p>
                     <p>提供交易担保，全程代办过户</p>
                 </li>
-                <li style="background:url(/FYUP/image/image/20150802/20150802125552_55464.jpg) no-repeat center 25px;">
+                <li style="background:url(../static/img/05.jpg) no-repeat center 25px;">
                     <p class="one">14天可以退车</p>
                     <p>1年/2万公里质保</p>
                 </li>

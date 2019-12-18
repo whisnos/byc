@@ -3247,12 +3247,12 @@
                     </h4>
                     <div class="content">
                         <ul class="ls_collapse" style="display: block;">
-                            <li><a class="on" name="0" zz="pf">不限</a></li>
-                            <li><a name="面包车酷" zz="pf">面包车酷</a></li>
-                            <li><a name="经典SUV" zz="pf">经典SUV</a></li>
-                            <li><a name="经济实用" zz="pf">经济实用</a></li>
-                            <li><a name="热门练手" zz="pf">热门练手</a></li>
-                            <li><a name="超值低价" zz="pf">超值低价</a></li>
+                            <li><a class="on" name="" zz="pf">不限</a></li>
+                            <li><a name="0" zz="pf" {% if the_type_on == '0' %}class="on"{% endif %}>面包车酷</a></li>
+                            <li><a name="1" zz="pf"{% if the_type_on == '1' %}class="on"{% endif %}>经典SUV</a></li>
+                            <li><a name="2" zz="pf"{% if the_type_on == '2' %}class="on"{% endif %}>经济实用</a></li>
+                            <li><a name="3" zz="pf"{% if the_type_on == '3' %}class="on"{% endif %}>热门练手</a></li>
+                            <li><a name="4" zz="pf"{% if the_type_on == '4' %}class="on"{% endif %}>超值低价</a></li>
                         </ul>
                     </div>
                 </div>

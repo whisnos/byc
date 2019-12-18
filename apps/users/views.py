@@ -1,8 +1,9 @@
 from django.db.models import Q
-from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
-from users.models import CarBrand, CarPriceInfo, CarInfo
+from users.models import CarBrand, CarPriceInfo, CarInfo, IWantInfo
 
 
 def index(request):
@@ -23,8 +24,14 @@ def index(request):
 
 
 def buy_car(request):
+    pf=request.GET.get('pf','')
+    the_type_on=False
+    if pf in['0','1','2','3','4']:
+        the_type_on=pf
     all_brands = CarBrand.objects.all()
     all_car_prices = CarPriceInfo.objects.all()
+    if pf:
+        all_car_prices.filter()
     choice_areas = {
         '思明区': '思明区',
         '湖里区': '湖里区',
@@ -39,6 +46,7 @@ def buy_car(request):
         'all_brands': all_brands,
         'all_car_prices': all_car_prices,
         'choice_areas': choice_areas,
+        'the_type_on':the_type_on
     })
 
 
@@ -49,6 +57,7 @@ def test(request):
     yls = request.GET.get('arr[yls]', '')  # 价格
     zz = request.GET.get('arr[zz]', '')  # 车龄
     guishudi = request.GET.get('arr[guishudi]', '')  # 归属地
+    pf = request.GET.get('arr[pf]', '')  # 类型
     fy = request.GET.get('arr[fy]', '')  # 分页
     print('品牌', pp)
     yls1 = Q()
@@ -83,6 +92,10 @@ def test(request):
         yls1 = Q(area=int(guishudi)) & yls1
     else:
         yls1 =  yls1
+    if pf:
+        yls1 = yls1 & Q(car_type=int(pf))
+    else:
+        yls1 = yls1
     all_cars = CarInfo.objects.filter(yls1)
     print('all_cars', all_cars)
     if not all_cars:
@@ -90,3 +103,22 @@ def test(request):
     return render(request, 'car_info.html', {
         'all_cars': all_cars,
     })
+def user_buy_car(request):
+    if request.method == 'POST':
+        print('request.POST', request.POST)
+        data={}
+        data['name'] = request.POST.get('name', '')  # 姓名
+        data['mobile'] = request.POST.get('num', '')  # 电话
+        data['brand'] = request.POST.get('car', '')  # 品牌
+        data['desc'] = request.POST.get('xuqiu', '')  # 描述
+        data['address'] = request.POST.get('addr', '')  # 地址
+        want_type = request.POST.get('type', '')  # 品牌
+        if want_type == '0':
+            data['want_type']=0
+            IWantInfo.objects.create(**data)
+        else:
+            data['want_type'] = 1
+            IWantInfo.objects.create(**data)
+    else:
+        pass
+    return HttpResponse('ok')

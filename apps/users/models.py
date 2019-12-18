@@ -133,8 +133,8 @@ class IWantInfo(models.Model):
     name = models.CharField(max_length=15, verbose_name='姓名')
     mobile = models.CharField(max_length=20, verbose_name='手机号')
     brand = models.CharField(max_length=15, verbose_name='品牌')
-    desc = models.CharField(max_length=200, verbose_name='描述')
-    address = models.CharField(null=True, blank=True, max_length=20, verbose_name='你的地址')
+    desc = models.CharField(max_length=200, verbose_name='需求描述')
+    address = models.CharField(null=True, blank=True, max_length=20, verbose_name='所在地')
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:

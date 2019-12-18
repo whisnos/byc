@@ -1,4 +1,4 @@
-from users.models import CarInfo, CarsImage, CarBrand, CarPriceInfo
+from users.models import CarInfo, CarsImage, CarBrand, CarPriceInfo, IWantInfo
 from xadmin import views
 import xadmin
 
@@ -39,7 +39,11 @@ class CarBrandXadmin(object):
 class CarPriceInfoXadmin(object):
     list_display = ['price', ]
 
+class IWantInfoXadmin(object):
+    list_display = ['name','mobile','brand','want_type','desc','address' ]
 
+
+xadmin.site.register(IWantInfo, IWantInfoXadmin)
 xadmin.site.register(CarPriceInfo, CarPriceInfoXadmin)
 
 xadmin.site.register(CarInfo, CarInfoXadmin)

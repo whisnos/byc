@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
+from byc.settings import PAGE_SIZE, DISPLAY
+from users.helper import iPagination
 from users.models import CarBrand, CarPriceInfo, CarInfo, IWantInfo
 
 
@@ -58,7 +60,15 @@ def test(request):
     zz = request.GET.get('arr[zz]', '')  # 车龄
     guishudi = request.GET.get('arr[guishudi]', '')  # 归属地
     pf = request.GET.get('arr[pf]', '')  # 类型
-    fy = request.GET.get('arr[fy]', '')  # 分页
+    fy = request.GET.get('arr[fy]', 1)  # 分页
+    if fy:
+        try:
+            page=int(fy)
+            offset = (page - 1) * PAGE_SIZE
+        except:
+            offset=0
+
+
     print('品牌', pp)
     yls1 = Q()
     if pp:
@@ -96,12 +106,22 @@ def test(request):
         yls1 = yls1 & Q(car_type=int(pf))
     else:
         yls1 = yls1
-    all_cars = CarInfo.objects.filter(yls1)
+
+    all_cars = CarInfo.objects.filter(yls1)[offset:offset+PAGE_SIZE:]
+    page_params = {
+        'total': all_cars.count(),
+        'page_size': PAGE_SIZE,
+        'page': int(fy),
+        'display': DISPLAY,
+        'url': request.path.replace('&p={}'.format(int(fy)), '?')
+    }
+    pages = iPagination(page_params)
     print('all_cars', all_cars)
     if not all_cars:
         all_cars = ''
     return render(request, 'car_info.html', {
         'all_cars': all_cars,
+        'pages':pages
     })
 def user_buy_car(request):
     if request.method == 'POST':
